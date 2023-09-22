@@ -1,0 +1,5 @@
+The checker named {{ checker.name }} was failing, but now it's passing again!
+
+You can view _all_ checkers here:
+
+https://admin.buttondown.email/admin/checker/checker/

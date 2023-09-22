@@ -1,0 +1,92 @@
+{% extends './base.html' %}
+
+{% block main %}
+    <nav class="flex" aria-label="Breadcrumb">
+        <ol role="list" class="flex items-center space-x-4">
+            <li>
+                <div>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        {% include "./icons/home.html" %}
+                        <span class="sr-only">Home</span>
+                    </a>
+                </div>
+            </li>
+
+            <li>
+                <div class="flex items-center">
+                    {% include "./icons/divider.html" %}
+                    <a href="/checkers" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Checkers</a>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="sm:flex sm:items-center mt-8">
+        <div class="sm:flex-auto">
+            <h1 class="text-xl font-semibold text-gray-900">Checkers</h1>
+        </div>
+    </div>
+
+    <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <table class="min-w-full divide-y divide-red-300">
+                        <thead class="bg-red-200">
+                            <tr>
+                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-red-900 sm:pl-6">Checker</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-red-900">Text</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-red-900">Data</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200  bg-red-100">
+                            {% for failure in current_failures %}
+                                <tr>
+                                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-red-700 sm:pl-6">{{ failure.checker_run.checker.name }}</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-red-700">{{ failure.text }}</td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-red-700">{% if failure.data %}{{ failure.data }}{% endif %}</td>
+                                </tr>
+                            {% endfor %}
+
+                            <!-- More people... -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    <table class="min-w-full">
+                        <thead class="bg-white">
+                            <tr>
+                                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+                                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Group</th>
+                                <th scope="col" class="px-3 py-3.5 text-right text-sm font-semibold text-gray-900">Time since last status change</th>
+                            </tr>
+                        </thead>
+
+                        {% for group in checker_groups %}
+                            <tbody class="bg-white">
+                                <tr class="border-t border-gray-200">
+                                    <th colspan="5" scope="colgroup" class="bg-gray-50 px-4 py-2 text-left text-sm font-semibold text-gray-900 sm:px-6">{% include './partials/badge.html' with text=group.status %}</th>
+                                </tr>
+
+                                {% for checker in group.checkers %}
+                                    <tr class="border-t border-gray-300">
+                                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="/checkers/{{ checker.name }}"><pre>{{ checker.name }}</pre></a></td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{% include './partials/badge.html' with text=checker.section %}</td>
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 text-right">{{ checker.human_readable_time_since_status_change }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

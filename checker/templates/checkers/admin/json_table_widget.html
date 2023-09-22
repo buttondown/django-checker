@@ -1,0 +1,42 @@
+<table>
+    <thead>
+        <tr>
+            <th class="">Key
+            </th>
+
+            <th class="">Value
+            </th>
+        </tr></thead>
+    {% for key, value in widget.value.items %}
+        <tr class="form-row">
+            <td>{{ key }}</td>
+            <td>
+                {% if key == 'newsletter_id' %}
+                    <a href="{% url 'admin:emails_newsletter_change' value %}">{{ value }}</a>
+                {% elif key == 'subscriber_id' %}
+                    <a href="{% url 'admin:emails_subscriber_change' value %}">{{ value }}</a>
+                {% elif key == 'account_id' %}
+                    <a href="{% url 'admin:emails_account_change' value %}">{{ value }}</a>
+                {% elif key == 'email_id' %}
+                    <a href="{% url 'admin:emails_email_change' value %}">{{ value }}</a>
+                {% elif key == 'archive_import_id' %}
+                    <a href="{% url 'admin:emails_archiveimport_change' value %}">{{ value }}</a>
+                {% elif key == 'bulk_action_id' %}
+                    <a href="{% url 'admin:emails_bulkaction_change' value %}">{{ value }}</a>
+                {% elif key == 'external_feed_id' %}
+                    <a href="{% url 'admin:emails_externalfeedautomation_change' value %}">{{ value }}</a>
+                {% elif key == 'event_id' %}
+                    <a href="{% url 'admin:emails_externalevent_change' value %}">{{ value }}</a>
+                {% elif key == 'automation_id' %}
+                    <a href="{% url 'admin:emails_automation_change' value %}">{{ value }}</a>
+                {% elif key == 'automation_attempt_id' %}
+                    <a href="{% url 'admin:emails_automationattempt_change' value %}">{{ value }}</a>
+                {% elif key == 'url' %}
+                    <a href="{{ value }}">{{ value }}</a>
+                {% else %}
+                    {{ value }}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

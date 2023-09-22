@@ -1,0 +1,17 @@
+{% extends 'admin/utility_base.html' %}
+{% load markdown %}
+
+{% block content %}
+    <style>
+        body {
+            background: #f1f5f9;
+            padding: 2em;
+            font-family: "Inter var";
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+    {% block main %}
+    {% endblock %}
+{% endblock %}
