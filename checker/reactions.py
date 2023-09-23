@@ -35,6 +35,7 @@ def render_email_content_for_checker_failure(failure: CheckerFailure) -> str:
         "checker_failure.txt",
         context={
             "failure": failure,
+            "SITE_URL": settings.SITE_URL,
         },
     )
 
@@ -44,6 +45,7 @@ def render_email_content_for_checker_success(checker: Checker) -> str:
         "checker_success.txt",
         context={
             "checker": checker,
+            "SITE_URL": settings.SITE_URL,
         },
     )
 

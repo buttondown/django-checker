@@ -12,11 +12,11 @@ The description of this checker is as follows:
 
 You can view this failure here:
 
-https://admin.buttondown.email/admin/checker/checkerrun/{{ failure.checker_run.id }}/change/
+{{ SITE_URL }}/admin/checker/checkerrun/{{ failure.checker_run.id }}/change/
 
 You can view _all_ checkers here:
 
-https://admin.buttondown.email/admin/checker/checker/
+{{ SITE_URL }}/admin/checker/checker/
 
 This failure has an ID of:
 {{ failure.id }}
