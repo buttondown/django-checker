@@ -2,11 +2,11 @@ import typing
 from dataclasses import dataclass
 from functools import partial
 
-from buttondown.settings import BUTTONDOWN_APPS
+from django.conf import settings
 from django.core.checks import Error, register
 
 from checker.models import Checker
-from utils.packages import import_submodules
+from .utils import import_submodules
 
 
 @dataclass
@@ -60,8 +60,7 @@ def register_checker(
     return runner_function
 
 
-first_party_app_names = BUTTONDOWN_APPS
-for app_name in first_party_app_names:
+for app_name in settings.INSTALLED_APPS:
     try:
         import_submodules(f"{app_name}.checkers")
     except ModuleNotFoundError:

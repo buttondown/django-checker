@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import JSONField
 
-from utils.models import BaseModel, BaseTransition
+from .models import BaseModel, BaseTransition
 
 
 class CheckerFailure(BaseModel):
