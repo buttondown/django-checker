@@ -1,0 +1,22 @@
+The checker named {{ failure.checker_run.checker.name }} failed with the following message:
+
+{% if failure.subtext %}
+{{ failure.subtext|safe }}
+{% else %}
+{{ failure.text|safe }}
+{% endif %}
+
+The description of this checker is as follows:
+
+{{ failure.checker_run.checker.description|safe }}
+
+You can view this failure here:
+
+{{ SITE_URL }}/admin/checker/checkerrun/{{ failure.checker_run.id }}/change/
+
+You can view _all_ checkers here:
+
+{{ SITE_URL }}/admin/checker/checker/
+
+This failure has an ID of:
+{{ failure.id }}
